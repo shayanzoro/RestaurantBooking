@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="global_padding_smaller">4dp</dimen>
+    <dimen name="global_padding_small">8dp</dimen>
+    <dimen name="global_padding_medium">16dp</dimen>
+    <dimen name="global_padding_large">20dp</dimen>
+    <dimen name="global_padding_xLarge">24dp</dimen>
+    <dimen name="global_padding_xxLarge">32dp</dimen>
+    <dimen name="global_padding_horizontal">8dp</dimen>
+
+    <!--Text sizes-->
+    <dimen name="textsize_small">14sp</dimen>
+    <dimen name="textsize_medium">17sp</dimen>
+    <dimen name="textsize_large">20sp</dimen>
+    <dimen name="textsize_xLarge">26sp</dimen>
+    <dimen name="textsize_xxLarge">33sp</dimen>
+
+    <!--Icon sizes-->
+    <dimen name="icon_font_smaller">14sp</dimen>
+    <dimen name="icon_font_small">17sp</dimen>
+    <dimen name="icon_font_medium">20sp</dimen>
+    <dimen name="icon_font_large">25sp</dimen>
+    <dimen name="icon_font_toolbar">24dp</dimen>
+
+    <dimen name="divider_height_thin">1dp</dimen>
+</resources>

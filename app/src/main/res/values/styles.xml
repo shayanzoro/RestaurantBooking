@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--TextView styles-->
+    <style name="Textview">
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+
+    <style name="Textview.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Textview.White.Small">
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="Textview.Dark">
+        <item name="android:textColor">@color/black_light</item>
+    </style>
+
+    <style name="Textview.Dark.Small">
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="Icon">
+        <item name="fontPath">@string/font_fontawesome</item>
+    </style>
+
+</resources>
