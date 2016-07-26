@@ -2,4 +2,7 @@
 <resources>
 
     <!--Font Awesome icons-->
+    <string name="icon_search"></string>
+    <string name="icon_cutlery"></string>
+    <string name="icon_close"></string>
 </resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.shayan.booking.viewmodel.CustomerViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--Search Layout-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:animateLayoutChanges="true"
+            android:background="@color/grey_light"
+            android:paddingLeft="@dimen/global_padding_medium"
+            android:paddingRight="@dimen/global_padding_medium"
+            >
+
+            <EditText
+                android:id="@+id/edit_text_customer_name"
+                style="@style/Textview.Vibrant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_light"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/btn_cancel_search"
+                android:hint="@string/search_customer_name"
+                android:imeOptions="actionSearch"
+                android:inputType="text"/>
+
+            <!--Search Button-->
+            <TextView
+                android:id="@+id/btn_cancel_search"
+                style="@style/Icon"
+                android:layout_width="@dimen/toolbar_icon_size"
+                android:layout_height="@dimen/toolbar_icon_size"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/global_padding_small"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:onClick="@{viewModel.onClickCancel}"
+                android:text="@string/icon_close"
+                android:textColor="?attr/colorPrimaryDark"
+                android:visibility="gone"
+                app:visibility="@{viewModel.cancelSearchVisibility}"/>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_customer_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey_lighter"
+            android:paddingTop="@dimen/global_padding_small"
+            android:paddingBottom="@dimen/global_padding_small"
+            android:clipToPadding="false"/>
+    </LinearLayout>
+</layout>

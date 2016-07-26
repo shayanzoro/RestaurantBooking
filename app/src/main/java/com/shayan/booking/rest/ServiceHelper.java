@@ -4,6 +4,7 @@ package com.shayan.booking.rest;
 import com.shayan.booking.application.Config;
 import com.shayan.booking.model.rest.Customer;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -47,7 +48,7 @@ public class ServiceHelper {
                 .build();
     }
 
-    public Observable<Customer> getCustomers() {
+    public Observable<List<Customer>> getCustomers() {
         return service.getCustomers();
     }
 }

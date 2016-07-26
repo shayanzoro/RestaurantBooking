@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/global_padding_smaller"
+        android:layout_marginLeft="@dimen/global_padding_small"
+        android:layout_marginRight="@dimen/global_padding_small"
+        android:layout_marginTop="@dimen/global_padding_smaller">
+
+        <FrameLayout
+            android:id="@+id/item_customer_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="40dp"
+                android:paddingLeft="@dimen/global_padding_medium"
+                android:paddingRight="@dimen/global_padding_medium"
+                android:paddingTop="40dp">
+
+                <!--Icon-->
+                <TextView
+                    style="@style/Icon.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/icon_cutlery"
+                    android:textColor="@color/black_light"
+                    />
+
+                <TextView
+                    android:id="@+id/item_customer_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/global_padding_medium"
+                    android:gravity="left"
+                    style="@style/Textview.Dark.Large"
+                    android:text="Susan Anderson"
+                    />
+            </LinearLayout>
+        </FrameLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

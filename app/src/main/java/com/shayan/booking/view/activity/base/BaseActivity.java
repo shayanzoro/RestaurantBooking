@@ -1,4 +1,4 @@
-package com.shayan.booking.ui.activity.base;
+package com.shayan.booking.view.activity.base;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 import com.shayan.booking.R;
 import com.trello.rxlifecycle.ActivityEvent;

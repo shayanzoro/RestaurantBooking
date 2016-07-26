@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Rest.Booking</string>
+
+    <!--titles-->
+    <string name="customers">Customers</string>
+
+    <!--Labels-->
+    <string name="search_customer_name">Search Customer Name</string>
 </resources>

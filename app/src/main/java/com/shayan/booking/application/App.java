@@ -1,7 +1,8 @@
 package com.shayan.booking.application;
 
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.shayan.booking.R;
 import com.shayan.booking.di.ServiceComponentBuilder;
@@ -12,7 +13,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 /**
  * Created by shayan on 2/28/16.
  */
-public class App extends Application {
+public class App extends MultiDexApplication {
 
     @Override
     public void onCreate() {
@@ -39,5 +40,11 @@ public class App extends Application {
 
     public static App get(Context context) {
         return (App) context.getApplicationContext();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

@@ -24,4 +24,6 @@
     <dimen name="icon_font_toolbar">24dp</dimen>
 
     <dimen name="divider_height_thin">1dp</dimen>
+
+    <dimen name="toolbar_icon_size">48dp</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package com.shayan.booking.ui.view;
+package com.shayan.booking.adapter;
 
 /*
  * Copyright 2014 Eduardo Barrenechea

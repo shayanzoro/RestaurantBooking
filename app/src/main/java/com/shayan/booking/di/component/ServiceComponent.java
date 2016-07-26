@@ -1,7 +1,7 @@
 package com.shayan.booking.di.component;
 
 import com.shayan.booking.di.module.ServiceModule;
-import com.shayan.booking.ui.activity.MainActivity;
+import com.shayan.booking.viewmodel.CustomerViewModel;
 
 import javax.inject.Singleton;
 
@@ -14,6 +14,6 @@ import dagger.Component;
 @Component(modules = ServiceModule.class)
 public interface ServiceComponent {
 
-    void inject(MainActivity barcodeScanActivity);
+    void inject(CustomerViewModel customerViewModel);
 
 }

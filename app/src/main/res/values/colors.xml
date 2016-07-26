@@ -3,11 +3,15 @@
     <color name="color_primary">#008496</color>
     <color name="color_primary_dark">#006779</color>
     <!--The color of Ripple Effect-->
-    <color name="colorControlHighlight">#8700d4ff</color>
+    <color name="colorControlHighlight">#a6b1b1b1</color>
 
     <!--white transparent-->
     <color name="white">#ffffff</color>
     <color name="black">#000</color>
     <color name="black_light">#323232</color>
     <color name="transparent">#00000000</color>
+
+    <color name="grey">#7e7e7e</color>
+    <color name="grey_light">#cfcfcf</color>
+    <color name="grey_lighter">#efefef</color>
 </resources>
