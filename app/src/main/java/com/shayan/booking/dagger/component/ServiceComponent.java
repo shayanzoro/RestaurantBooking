@@ -1,6 +1,6 @@
-package com.shayan.booking.di.component;
+package com.shayan.booking.dagger.component;
 
-import com.shayan.booking.di.module.ServiceModule;
+import com.shayan.booking.dagger.module.ServiceModule;
 import com.shayan.booking.viewmodel.CustomerViewModel;
 
 import javax.inject.Singleton;

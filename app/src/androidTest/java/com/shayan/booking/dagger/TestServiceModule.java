@@ -1,10 +1,11 @@
-package com.shayan.booking.di.module;
+package com.shayan.booking.dagger;
 
 import android.content.Context;
 
 import com.shayan.booking.application.Config;
 import com.shayan.booking.db.DataBaseManager;
 import com.shayan.booking.rest.ServiceHelper;
+import com.shayan.booking.rest.TestServiceHelper;
 
 import javax.inject.Singleton;
 
@@ -12,15 +13,15 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by Shayan on 6/13/16.
+ * Created by Shayan on 7/27/2016.
  */
 @Module
 @Singleton
-public class ServiceModule {
+public class TestServiceModule {
 
-    private Context context;
+    protected Context context;
 
-    public ServiceModule(Context context) {
+    public TestServiceModule(Context context) {
         this.context = context;
     }
 
@@ -31,19 +32,19 @@ public class ServiceModule {
 
     @Singleton
     @Provides
-    Config providesConfig(Context context) {
+    public Config providesConfig(Context context) {
         return new Config(context);
     }
 
     @Singleton
     @Provides
-    DataBaseManager provideDataBaseManager(Context context) {
+    public DataBaseManager provideDataBaseManager(Context context) {
         return new DataBaseManager(context);
     }
 
     @Singleton
     @Provides
-    ServiceHelper provideServiceHelper(Config config) {
-        return new ServiceHelper(config);
+    public ServiceHelper provideServiceHelper(Config config) {
+        return new TestServiceHelper();
     }
 }

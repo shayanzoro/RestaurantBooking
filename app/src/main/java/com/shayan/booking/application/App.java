@@ -5,15 +5,22 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
 import com.shayan.booking.R;
-import com.shayan.booking.di.ServiceComponentBuilder;
-import com.shayan.booking.di.component.ServiceComponent;
+import com.shayan.booking.dagger.component.DaggerServiceComponent;
+import com.shayan.booking.dagger.component.ServiceComponent;
+import com.shayan.booking.dagger.module.ServiceModule;
 
+import lombok.Getter;
+import lombok.Setter;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by shayan on 2/28/16.
  */
 public class App extends MultiDexApplication {
+
+    @Getter
+    @Setter //for Test
+    private ServiceComponent serviceComponent;
 
     @Override
     public void onCreate() {
@@ -23,7 +30,9 @@ public class App extends MultiDexApplication {
     }
 
     private void initDagger() {
-        ServiceComponentBuilder.getInstance(this);
+        serviceComponent = DaggerServiceComponent.builder()
+                .serviceModule(new ServiceModule(this))
+                .build();
     }
 
     private void initCalligraphy() {
@@ -32,10 +41,6 @@ public class App extends MultiDexApplication {
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
-    }
-
-    public ServiceComponent getServiceComponent() {
-        return ServiceComponentBuilder.getInstance(this).getServiceComponent();
     }
 
     public static App get(Context context) {

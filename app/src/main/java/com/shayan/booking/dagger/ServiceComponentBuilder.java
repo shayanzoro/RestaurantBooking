@@ -1,12 +1,13 @@
-package com.shayan.booking.di;
+package com.shayan.booking.dagger;
 
 import android.content.Context;
 
-import com.shayan.booking.di.component.DaggerServiceComponent;
-import com.shayan.booking.di.component.ServiceComponent;
-import com.shayan.booking.di.module.ServiceModule;
+import com.shayan.booking.dagger.component.DaggerServiceComponent;
+import com.shayan.booking.dagger.component.ServiceComponent;
+import com.shayan.booking.dagger.module.ServiceModule;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by Shayan on 6/15/16.
@@ -16,6 +17,7 @@ public class ServiceComponentBuilder {
     private static ServiceComponentBuilder instance;
 
     @Getter
+    @Setter
     private ServiceComponent serviceComponent;
 
     public static ServiceComponentBuilder getInstance(Context context) {

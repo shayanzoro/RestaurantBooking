@@ -1,14 +1,17 @@
 package com.shayan.booking.view.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
 import com.shayan.booking.R;
-import com.shayan.booking.event.TitleChangeEvent;
+import com.shayan.booking.event.ActivityTitleChangeEvent;
 import com.shayan.booking.view.activity.base.BaseActivity;
 import com.shayan.booking.view.fragment.CustomerFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import lombok.Getter;
 
 
 /**
@@ -16,24 +19,28 @@ import org.greenrobot.eventbus.Subscribe;
  */
 public class MainActivity extends BaseActivity {
 
+    @Getter
+    private CustomerFragment customerFragment = new CustomerFragment();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
 
-        showCustomerFragment();
+        addFragment(customerFragment);
     }
 
-    private void showCustomerFragment() {
+    public void addFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new CustomerFragment())
-                .commit();
+                .addToBackStack(fragment.getClass().getSimpleName())
+                .replace(R.id.fragment_container, fragment)
+                .commitAllowingStateLoss();
     }
 
     @Subscribe
-    public void onTitleChangeEvent(TitleChangeEvent event) {
+    public void onActivityTitleChangeEvent(ActivityTitleChangeEvent event) {
         Object title = event.getTitle();
         if(title instanceof String)
             setToolbarTitle((String) title);

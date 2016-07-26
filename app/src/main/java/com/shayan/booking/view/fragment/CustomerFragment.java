@@ -13,7 +13,7 @@ import com.shayan.booking.R;
 import com.shayan.booking.adapter.CustomerAdapter;
 import com.shayan.booking.adapter.RecyclerItemClickListener;
 import com.shayan.booking.databinding.FragmentCustomerBinding;
-import com.shayan.booking.event.TitleChangeEvent;
+import com.shayan.booking.event.ActivityTitleChangeEvent;
 import com.shayan.booking.model.rest.Customer;
 import com.shayan.booking.util.ShayanLogger;
 import com.shayan.booking.view.fragment.base.BaseFragment;
@@ -23,6 +23,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
@@ -32,6 +33,8 @@ import lombok.NoArgsConstructor;
 public class CustomerFragment extends BaseFragment implements CustomerViewModel.DataListener {
 
     private FragmentCustomerBinding binding;
+
+    @Getter
     private CustomerAdapter customerAdapter;
 
     @Nullable
@@ -66,7 +69,7 @@ public class CustomerFragment extends BaseFragment implements CustomerViewModel.
     public void onResume() {
         super.onResume();
         //change title of the parent activity
-        EventBus.getDefault().post(new TitleChangeEvent(R.string.customers));
+        EventBus.getDefault().post(new ActivityTitleChangeEvent(R.string.customers));
     }
 
     @Override

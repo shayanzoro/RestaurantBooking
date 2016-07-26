@@ -7,6 +7,7 @@ import com.shayan.booking.model.rest.Customer;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import lombok.NoArgsConstructor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -17,6 +18,7 @@ import rx.Observable;
 /**
  * Created by Shayan.
  */
+@NoArgsConstructor
 public class ServiceHelper {
     private final int CONNECT_TIMEOUT = 6 * 1000;
     private final int READ_TIMEOUT = 8 * 1000;
