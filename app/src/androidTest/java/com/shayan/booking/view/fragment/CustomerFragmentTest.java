@@ -1,6 +1,5 @@
 package com.shayan.booking.view.fragment;
 
-import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.TextView;
 
@@ -28,7 +27,11 @@ public class CustomerFragmentTest extends ActivityInstrumentationTestCase2<MainA
 
         //mocking injections
         App app = App.get(getInstrumentation().getTargetContext().getApplicationContext());
-        app.setServiceComponent(createTestServiceComponent(app));
+        ServiceComponentMock serviceComponentMock = DaggerServiceComponentMock.builder()
+                .serviceModuleMock(new ServiceModuleMock(app))
+                .build();
+
+        app.setServiceComponent(serviceComponentMock);
 
         customerFragment = getActivity().getCustomerFragment();
         getInstrumentation().waitForIdleSync();
@@ -44,9 +47,4 @@ public class CustomerFragmentTest extends ActivityInstrumentationTestCase2<MainA
         assertTrue("RecyclerView has no item", itemCount > 0);
     }
 
-    public ServiceComponentMock createTestServiceComponent(Context context) {
-        return DaggerServiceComponentMock.builder()
-                .serviceModuleMock(new ServiceModuleMock(context))
-                .build();
-    }
 }

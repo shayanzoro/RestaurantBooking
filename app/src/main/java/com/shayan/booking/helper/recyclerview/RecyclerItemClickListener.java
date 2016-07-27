@@ -1,4 +1,4 @@
-package com.shayan.booking.adapter;
+package com.shayan.booking.helper.recyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -7,4 +7,9 @@
 
     <!--Labels-->
     <string name="search_customer_name">Search Customer Name</string>
+
+    <!--Dialogs-->
+    <string name="select_table_to_book">Select a table to book</string>
+    <string name="reserved">Reserved</string>
+    <string name="your_table">Your Table</string>
 </resources>

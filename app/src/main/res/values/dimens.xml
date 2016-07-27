@@ -25,5 +25,10 @@
 
     <dimen name="divider_height_thin">1dp</dimen>
 
+    <dimen name="radius_medium">4dp</dimen>
+
     <dimen name="toolbar_icon_size">48dp</dimen>
+
+    <dimen name="table_grid_column_width">110dp</dimen>
+    <dimen name="table_grid_column_height">80dp</dimen>
 </resources>

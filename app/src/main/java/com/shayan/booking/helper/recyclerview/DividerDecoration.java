@@ -1,4 +1,4 @@
-package com.shayan.booking.adapter;
+package com.shayan.booking.helper.recyclerview;
 
 /*
  * Copyright 2014 Eduardo Barrenechea

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Created by Shayan on 7/25/2016.
+ * Used for both REST service and Database
  */
 @DatabaseTable(tableName = "customer")
 @NoArgsConstructor //needed for ORMLite

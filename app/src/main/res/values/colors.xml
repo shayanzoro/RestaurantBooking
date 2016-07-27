@@ -5,6 +5,8 @@
     <!--The color of Ripple Effect-->
     <color name="colorControlHighlight">#a6b1b1b1</color>
 
+    <color name="blue_transparent">#ad008496</color>
+
     <!--white transparent-->
     <color name="white">#ffffff</color>
     <color name="black">#000</color>
@@ -12,6 +14,7 @@
     <color name="transparent">#00000000</color>
 
     <color name="grey">#7e7e7e</color>
+    <color name="grey_transparent">#adbebebe</color>
     <color name="grey_light">#cfcfcf</color>
     <color name="grey_lighter">#efefef</color>
 </resources>

@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.shayan.booking.R;
@@ -22,7 +21,6 @@ import butterknife.ButterKnife;
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHolder> {
     private LayoutInflater inflater;
     private List<Customer> items;
-    private AdapterView.OnItemClickListener onItemClickListener;
 
     public CustomerAdapter(Context context) {
         inflater = LayoutInflater.from(context);
@@ -59,7 +57,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         return items.get(position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.item_customer_name)
         TextView customerName;
 
@@ -67,11 +65,5 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-
-//        @OnClick(R.id.item_customer_root)
-//        public void onClick(View view) {
-//            int position = getAdapterPosition();
-//            onItemClickListener.onItemClick(null, view, position, CustomerAdapter.this.getItemId(position));
-//        }
     }
 }

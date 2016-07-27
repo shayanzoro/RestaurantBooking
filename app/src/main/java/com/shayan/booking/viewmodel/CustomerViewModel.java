@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.shayan.booking.application.App;
-import com.shayan.booking.application.Config;
 import com.shayan.booking.db.DataBaseManager;
 import com.shayan.booking.model.rest.Customer;
 import com.shayan.booking.rest.ServiceHelper;
@@ -33,8 +32,6 @@ public class CustomerViewModel implements ViewModel {
     @Inject
     ServiceHelper serviceHelper;
     @Inject
-    Config config;
-    @Inject
     DataBaseManager dataBaseManager;
 
     private Observable<FragmentEvent> lifecycleObservable;
@@ -49,6 +46,7 @@ public class CustomerViewModel implements ViewModel {
         this.context = context;
         this.lifecycleObservable = lifecycleObservable;
         cancelSearchVisibility = new ObservableInt(View.GONE);
+
         App.get(context).getServiceComponent().inject(this);
 
         dataListener.showProgress();
@@ -57,7 +55,7 @@ public class CustomerViewModel implements ViewModel {
 
     private void getData() {
         if (GeneralUtils.isOnline(context)) {
-            fetchCustomers();
+            fetchCustomersFromServer();
         } else if (dataBaseManager.getCustomersCount() > 0) {
             getCachedCustomers();
         } else {
@@ -72,7 +70,7 @@ public class CustomerViewModel implements ViewModel {
         dataListener.hideProgress();
     }
 
-    private void fetchCustomers() {
+    private void fetchCustomersFromServer() {
         serviceHelper.getCustomers()
                 .compose(RxLifecycle.bindUntilFragmentEvent(lifecycleObservable, FragmentEvent.DESTROY_VIEW))
                 .subscribeOn(Schedulers.io())

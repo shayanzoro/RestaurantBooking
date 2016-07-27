@@ -5,8 +5,10 @@ import android.support.v4.app.Fragment;
 
 import com.shayan.booking.R;
 import com.shayan.booking.event.ActivityTitleChangeEvent;
+import com.shayan.booking.event.TableMapFragmentShowEvent;
 import com.shayan.booking.view.activity.base.BaseActivity;
 import com.shayan.booking.view.fragment.CustomerFragment;
+import com.shayan.booking.view.fragment.TableMapFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -21,6 +23,8 @@ public class MainActivity extends BaseActivity {
 
     @Getter
     private CustomerFragment customerFragment = new CustomerFragment();
+    @Getter
+    private TableMapFragment tableMapFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,22 @@ public class MainActivity extends BaseActivity {
             setToolbarTitle((String) title);
         else if(title instanceof Integer)
             setToolbarTitle((Integer) title);
+    }
+
+    @Subscribe
+    public void onTableMapFragmentShowEvent(TableMapFragmentShowEvent event) {
+        tableMapFragment = new TableMapFragment();
+        tableMapFragment.setCustomer(event.getCustomer());
+        addFragment(tableMapFragment);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+            finish();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 
     @Override

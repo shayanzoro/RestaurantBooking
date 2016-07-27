@@ -29,8 +29,8 @@ public class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Nullable
     @CallSuper
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         lifecycleSubject.onNext(FragmentEvent.CREATE_VIEW);

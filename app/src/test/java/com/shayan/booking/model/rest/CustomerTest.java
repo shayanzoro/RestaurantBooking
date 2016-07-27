@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class CustomerTest {
     @Test
-    public void fullName_isCorrect() throws Exception {
+    public void fullNameIsCorrect() throws Exception {
         String fName = "Shayan";
         String lName = "Aryan";
         Customer customer = new Customer(1, fName, lName);

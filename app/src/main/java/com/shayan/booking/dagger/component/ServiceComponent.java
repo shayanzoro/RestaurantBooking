@@ -2,6 +2,7 @@ package com.shayan.booking.dagger.component;
 
 import com.shayan.booking.dagger.module.ServiceModule;
 import com.shayan.booking.viewmodel.CustomerViewModel;
+import com.shayan.booking.viewmodel.TablesViewModel;
 
 import javax.inject.Singleton;
 
@@ -15,5 +16,7 @@ import dagger.Component;
 public interface ServiceComponent {
 
     void inject(CustomerViewModel customerViewModel);
+
+    void inject(TablesViewModel tablesViewModel);
 
 }

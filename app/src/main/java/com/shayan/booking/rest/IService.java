@@ -12,5 +12,5 @@ public interface IService {
     Observable<List<Customer>> getCustomers();
 
     @GET("/quandoo-assessment/table-map.json")
-    Observable<Object> getTableMap();
+    Observable<boolean[]> getTableMap();
 }

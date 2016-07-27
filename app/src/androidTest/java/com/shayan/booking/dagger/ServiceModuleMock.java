@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.shayan.booking.application.Config;
 import com.shayan.booking.db.DataBaseManager;
+import com.shayan.booking.db.DataBaseManagerMock;
 import com.shayan.booking.rest.ServiceHelper;
 import com.shayan.booking.rest.ServiceHelperMock;
 
@@ -39,7 +40,7 @@ public class ServiceModuleMock {
     @Singleton
     @Provides
     public DataBaseManager provideDataBaseManager(Context context) {
-        return new DataBaseManager(context);
+        return new DataBaseManagerMock(context);
     }
 
     @Singleton

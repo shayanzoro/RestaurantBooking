@@ -53,6 +53,10 @@ public class ServiceHelper {
     public Observable<List<Customer>> getCustomers() {
         return service.getCustomers();
     }
+
+    public Observable<boolean[]> getTableMap(long customerId) {
+        return service.getTableMap();
+    }
 }
 
 

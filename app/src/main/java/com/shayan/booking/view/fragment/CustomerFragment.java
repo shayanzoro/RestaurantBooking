@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 
 import com.shayan.booking.R;
 import com.shayan.booking.adapter.CustomerAdapter;
-import com.shayan.booking.adapter.RecyclerItemClickListener;
+import com.shayan.booking.helper.recyclerview.RecyclerItemClickListener;
 import com.shayan.booking.databinding.FragmentCustomerBinding;
 import com.shayan.booking.event.ActivityTitleChangeEvent;
+import com.shayan.booking.event.TableMapFragmentShowEvent;
 import com.shayan.booking.model.rest.Customer;
-import com.shayan.booking.util.ShayanLogger;
 import com.shayan.booking.view.fragment.base.BaseFragment;
 import com.shayan.booking.viewmodel.CustomerViewModel;
 
@@ -36,6 +36,7 @@ public class CustomerFragment extends BaseFragment implements CustomerViewModel.
 
     @Getter
     private CustomerAdapter customerAdapter;
+    private CustomerViewModel viewModel;
 
     @Nullable
     @Override
@@ -45,7 +46,7 @@ public class CustomerFragment extends BaseFragment implements CustomerViewModel.
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_customer, container, false);
         initRecyclerView();
 
-        CustomerViewModel viewModel = new CustomerViewModel(this, getActivity(), lifecycleSubject);
+        viewModel = new CustomerViewModel(this, getActivity(), lifecycleSubject);
         viewModel.subscribeTextWatcher(binding.editTextCustomerName);
         binding.setViewModel(viewModel);
 
@@ -57,13 +58,15 @@ public class CustomerFragment extends BaseFragment implements CustomerViewModel.
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), (view, position) -> {
-                    ShayanLogger.d("CustomerFragment", "item clicked " + position);
+                    Customer customer = customerAdapter.getItem(position);
+                    EventBus.getDefault().post(new TableMapFragmentShowEvent(customer));
                 })
         );
 
         customerAdapter = new CustomerAdapter(getActivity());
         recyclerView.setAdapter(customerAdapter);
     }
+
 
     @Override
     public void onResume() {
@@ -95,5 +98,11 @@ public class CustomerFragment extends BaseFragment implements CustomerViewModel.
     @Override
     public void clearSearch() {
         binding.editTextCustomerName.setText("");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        viewModel.onDestroy();
     }
 }
