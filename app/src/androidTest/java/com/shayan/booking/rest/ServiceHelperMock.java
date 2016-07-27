@@ -26,4 +26,12 @@ public class ServiceHelperMock extends ServiceHelper{
         subject.onNext(customers);
         return subject;
     }
+
+    @Override
+    public Observable<boolean[]> getTableMap(long customerId) {
+        boolean[] tables = new boolean[]{false, false, false, false, true, false, false, true, true, false, false, false};
+        BehaviorSubject<boolean[]> subject = BehaviorSubject.create();
+        subject.onNext(tables);
+        return subject;
+    }
 }
