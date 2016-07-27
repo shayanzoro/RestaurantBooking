@@ -5,7 +5,7 @@ import android.content.Context;
 import com.shayan.booking.application.Config;
 import com.shayan.booking.db.DataBaseManager;
 import com.shayan.booking.rest.ServiceHelper;
-import com.shayan.booking.rest.TestServiceHelper;
+import com.shayan.booking.rest.ServiceHelperMock;
 
 import javax.inject.Singleton;
 
@@ -17,11 +17,11 @@ import dagger.Provides;
  */
 @Module
 @Singleton
-public class TestServiceModule {
+public class ServiceModuleMock {
 
     protected Context context;
 
-    public TestServiceModule(Context context) {
+    public ServiceModuleMock(Context context) {
         this.context = context;
     }
 
@@ -45,6 +45,6 @@ public class TestServiceModule {
     @Singleton
     @Provides
     public ServiceHelper provideServiceHelper(Config config) {
-        return new TestServiceHelper();
+        return new ServiceHelperMock();
     }
 }

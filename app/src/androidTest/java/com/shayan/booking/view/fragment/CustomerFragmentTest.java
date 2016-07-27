@@ -6,9 +6,9 @@ import android.widget.TextView;
 
 import com.shayan.booking.R;
 import com.shayan.booking.application.App;
-import com.shayan.booking.dagger.DaggerTestServiceComponent;
-import com.shayan.booking.dagger.TestServiceComponent;
-import com.shayan.booking.dagger.TestServiceModule;
+import com.shayan.booking.dagger.DaggerServiceComponentMock;
+import com.shayan.booking.dagger.ServiceComponentMock;
+import com.shayan.booking.dagger.ServiceModuleMock;
 import com.shayan.booking.view.activity.MainActivity;
 
 /**
@@ -44,9 +44,9 @@ public class CustomerFragmentTest extends ActivityInstrumentationTestCase2<MainA
         assertTrue("RecyclerView has no item", itemCount > 0);
     }
 
-    public TestServiceComponent createTestServiceComponent(Context context) {
-        return DaggerTestServiceComponent.builder()
-                .testServiceModule(new TestServiceModule(context))
+    public ServiceComponentMock createTestServiceComponent(Context context) {
+        return DaggerServiceComponentMock.builder()
+                .serviceModuleMock(new ServiceModuleMock(context))
                 .build();
     }
 }

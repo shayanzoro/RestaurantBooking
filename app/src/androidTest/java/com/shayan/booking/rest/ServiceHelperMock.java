@@ -11,7 +11,7 @@ import rx.subjects.BehaviorSubject;
 /**
  * Created by Shayan on 7/27/2016.
  */
-public class TestServiceHelper extends ServiceHelper{
+public class ServiceHelperMock extends ServiceHelper{
 
     @Override
     public Observable<List<Customer>> getCustomers() {
