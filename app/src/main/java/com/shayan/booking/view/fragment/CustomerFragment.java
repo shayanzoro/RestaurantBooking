@@ -59,6 +59,7 @@ public class CustomerFragment extends BaseFragment implements CustomerViewModel.
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), (view, position) -> {
                     Customer customer = customerAdapter.getItem(position);
+                    clearSearch();
                     EventBus.getDefault().post(new TableMapFragmentShowEvent(customer));
                 })
         );
