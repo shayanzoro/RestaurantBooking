@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 
 import com.shayan.booking.R;
 import com.shayan.booking.adapter.CustomerAdapter;
-import com.shayan.booking.helper.recyclerview.RecyclerItemClickListener;
 import com.shayan.booking.databinding.FragmentCustomerBinding;
 import com.shayan.booking.event.ActivityTitleChangeEvent;
 import com.shayan.booking.event.TableMapFragmentShowEvent;
+import com.shayan.booking.helper.recyclerview.RecyclerItemClickListener;
 import com.shayan.booking.model.rest.Customer;
 import com.shayan.booking.view.fragment.base.BaseFragment;
 import com.shayan.booking.viewmodel.CustomerViewModel;
@@ -81,23 +81,28 @@ public class CustomerFragment extends BaseFragment implements CustomerViewModel.
     }
 
     @Override
-    public void onNoConnection() {
-
-    }
-
-    @Override
     public void hideProgress() {
-
+        binding.progressFullscreen.stop();
     }
 
     @Override
     public void showProgress() {
-
+        binding.progressFullscreen.start();
     }
 
     @Override
     public void clearSearch() {
         binding.editTextCustomerName.setText("");
+    }
+
+    @Override
+    public void onNoConnection() {
+        binding.textNoConnection.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void connected() {
+        binding.textNoConnection.setVisibility(View.GONE);
     }
 
     @Override

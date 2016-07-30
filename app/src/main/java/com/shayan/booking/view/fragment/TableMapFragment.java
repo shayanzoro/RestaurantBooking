@@ -89,17 +89,22 @@ public class TableMapFragment extends BaseFragment implements TablesViewModel.Da
 
     @Override
     public void hideProgress() {
-
+        binding.progressFullscreen.stop();
     }
 
     @Override
     public void showProgress() {
-
+        binding.progressFullscreen.start();
     }
 
     @Override
     public void onNoConnection() {
+        binding.textNoConnection.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void connected() {
+        binding.textNoConnection.setVisibility(View.GONE);
     }
 
     @Override

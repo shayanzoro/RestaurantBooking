@@ -31,4 +31,5 @@
 
     <dimen name="table_grid_column_width">110dp</dimen>
     <dimen name="table_grid_column_height">80dp</dimen>
+
 </resources>

@@ -9,10 +9,35 @@
             type="com.shayan.booking.viewmodel.TablesViewModel"/>
     </data>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView_tables"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:padding="@dimen/global_padding_smaller"/>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_tables"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="@dimen/global_padding_smaller"/>
+
+        <com.shayan.booking.view.widget.FullscreenProgressView
+            android:id="@+id/progress_fullscreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
+        <!--No connection text-->
+        <TextView
+            android:id="@+id/text_no_connection"
+            style="@style/Textview.Dark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey_lighter"
+            android:gravity="center"
+            android:padding="@dimen/global_padding_medium"
+            android:text="@string/no_connection"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
 </layout>

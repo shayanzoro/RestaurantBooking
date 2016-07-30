@@ -2,10 +2,12 @@ package com.shayan.booking.viewmodel;
 
 import android.content.Context;
 import android.databinding.ObservableInt;
+import android.net.NetworkInfo;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.pwittchen.reactivenetwork.library.ReactiveNetwork;
 import com.shayan.booking.application.App;
 import com.shayan.booking.db.DataBaseManager;
 import com.shayan.booking.model.rest.Customer;
@@ -49,11 +51,12 @@ public class CustomerViewModel implements ViewModel {
 
         App.get(context).getServiceComponent().inject(this);
 
-        dataListener.showProgress();
         getData();
     }
 
     private void getData() {
+        dataListener.showProgress();
+
         if (GeneralUtils.isOnline(context)) {
             fetchCustomersFromServer();
         } else if (dataBaseManager.getCustomersCount() > 0) {
@@ -62,6 +65,7 @@ public class CustomerViewModel implements ViewModel {
             //device is offline, and it's the first time that app is fired
             dataListener.onNoConnection();
             dataListener.hideProgress();
+            listenForConnection();
         }
     }
 
@@ -91,7 +95,7 @@ public class CustomerViewModel implements ViewModel {
         cancelSearchVisibility.set(View.VISIBLE);
     }
 
-    public void cancelSearch() {
+    private void cancelSearch() {
         dataListener.onDataChanged(dataBaseManager.getAllCustomers());
         cancelSearchVisibility.set(View.GONE);
     }
@@ -113,6 +117,20 @@ public class CustomerViewModel implements ViewModel {
                 }, throwable -> throwable.printStackTrace());
     }
 
+    private void listenForConnection() {
+        ReactiveNetwork.observeNetworkConnectivity(context)
+                .subscribeOn(Schedulers.io())
+                .compose(RxLifecycle.bindUntilFragmentEvent(lifecycleObservable, FragmentEvent.DESTROY_VIEW))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(connectivity -> {
+                    if (connectivity.getState() == NetworkInfo.State.CONNECTED) {
+                        dataListener.connected();
+                        getData();
+                    }
+
+                }, Throwable::printStackTrace);
+    }
+
     public void onClickCancel(View view) {
         dataListener.clearSearch();
         cancelSearch();
@@ -128,12 +146,14 @@ public class CustomerViewModel implements ViewModel {
     public interface DataListener {
         void onDataChanged(List<Customer> customers);
 
-        void onNoConnection();
-
         void hideProgress();
 
         void showProgress();
 
         void clearSearch();
+
+        void onNoConnection();
+
+        void connected();
     }
 }

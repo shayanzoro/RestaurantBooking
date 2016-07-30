@@ -22,18 +22,17 @@
             android:animateLayoutChanges="true"
             android:background="@color/grey_light"
             android:paddingLeft="@dimen/global_padding_medium"
-            android:paddingRight="@dimen/global_padding_medium"
-            >
+            android:paddingRight="@dimen/global_padding_medium">
 
             <EditText
                 android:id="@+id/edit_text_customer_name"
                 style="@style/Textview.Vibrant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/grey_light"
-                android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/btn_cancel_search"
+                android:background="@color/grey_light"
                 android:hint="@string/search_customer_name"
                 android:imeOptions="actionSearch"
                 android:inputType="text"/>
@@ -44,12 +43,12 @@
                 style="@style/Icon"
                 android:layout_width="@dimen/toolbar_icon_size"
                 android:layout_height="@dimen/toolbar_icon_size"
-                android:gravity="center"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/global_padding_small"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
+                android:gravity="center"
                 android:onClick="@{viewModel.onClickCancel}"
                 android:text="@string/icon_close"
                 android:textColor="?attr/colorPrimaryDark"
@@ -58,13 +57,37 @@
 
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview_customer_list"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/grey_lighter"
-            android:paddingTop="@dimen/global_padding_small"
-            android:paddingBottom="@dimen/global_padding_small"
-            android:clipToPadding="false"/>
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_customer_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/grey_lighter"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/global_padding_small"
+                android:paddingTop="@dimen/global_padding_small"/>
+
+            <com.shayan.booking.view.widget.FullscreenProgressView
+                android:id="@+id/progress_fullscreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
+
+            <!--No connection text-->
+            <TextView
+                android:id="@+id/text_no_connection"
+                style="@style/Textview.Dark"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/grey_lighter"
+                android:gravity="center"
+                android:padding="@dimen/global_padding_medium"
+                android:text="@string/no_connection"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
     </LinearLayout>
 </layout>

@@ -1,13 +1,16 @@
 package com.shayan.booking.viewmodel;
 
 import android.content.Context;
+import android.net.NetworkInfo;
 
+import com.github.pwittchen.reactivenetwork.library.ReactiveNetwork;
 import com.shayan.booking.application.App;
 import com.shayan.booking.db.DataBaseManager;
 import com.shayan.booking.model.db.TableMap;
 import com.shayan.booking.rest.ServiceHelper;
 import com.shayan.booking.util.GeneralUtils;
 import com.trello.rxlifecycle.FragmentEvent;
+import com.trello.rxlifecycle.RxLifecycle;
 
 import javax.inject.Inject;
 
@@ -52,6 +55,7 @@ public class TablesViewModel implements ViewModel {
             //device is offline, this table map hasn't been saved before
             dataListener.onNoConnection();
             dataListener.hideProgress();
+            listenForConnection();
         }
     }
 
@@ -91,6 +95,21 @@ public class TablesViewModel implements ViewModel {
         dataBaseManager.clearBookedTable(customerId);
     }
 
+
+    private void listenForConnection() {
+        ReactiveNetwork.observeNetworkConnectivity(context)
+                .subscribeOn(Schedulers.io())
+                .compose(RxLifecycle.bindUntilFragmentEvent(lifecycleObservable, FragmentEvent.DESTROY_VIEW))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(connectivity -> {
+                    if (connectivity.getState() == NetworkInfo.State.CONNECTED) {
+                        dataListener.connected();
+                        getData();
+                    }
+
+                }, Throwable::printStackTrace);
+    }
+
     @Override
     public void onDestroy() {
         context = null;
@@ -101,11 +120,12 @@ public class TablesViewModel implements ViewModel {
 
         void onDataChanged(TableMap tableMap);
 
-        void hideProgress();
-
         void showProgress();
+
+        void hideProgress();
 
         void onNoConnection();
 
+        void connected();
     }
 }

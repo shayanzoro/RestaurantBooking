@@ -10,7 +10,7 @@
     <!--white transparent-->
     <color name="white">#ffffff</color>
     <color name="black">#000</color>
-    <color name="black_light">#323232</color>
+    <color name="black_light">#505050</color>
     <color name="transparent">#00000000</color>
 
     <color name="grey">#7e7e7e</color>

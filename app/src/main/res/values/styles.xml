@@ -39,4 +39,24 @@
         <item name="android:textSize">@dimen/icon_font_large</item>
     </style>
 
+    <!--ProgressBar-->
+    <style name="CircularProgress">
+        <item name="pv_circular">true</item>
+        <item name="pv_autostart">true</item>
+        <item name="pv_progressMode">indeterminate</item>
+    </style>
+
+    <style name="CircularProgress.Blue">
+        <item name="pv_progressStyle">@style/CircularProgressDrawableStyle.Blue</item>
+    </style>
+
+    <style name="CircularProgressDrawableStyle" parent="Material.Drawable.CircularProgress">
+        <item name="cpd_inAnimDuration">800</item>
+        <item name="cpd_inStepPercent">0</item>
+        <item name="cpd_outAnimDuration">400</item>
+    </style>
+
+    <style name="CircularProgressDrawableStyle.Blue">
+        <item name="cpd_strokeColor">@color/color_primary</item>
+    </style>
 </resources>
