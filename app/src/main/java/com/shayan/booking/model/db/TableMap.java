@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 public class TableMap {
 
-    private static int BOOKED_DEFAULT_POSITION = -1;
+    public static int BOOKED_DEFAULT_POSITION = -1;
 
     @DatabaseField(id = true)
     private long customerId;
@@ -55,5 +55,10 @@ public class TableMap {
 
     public void clearBookedTable() {
         bookedTable = BOOKED_DEFAULT_POSITION;
+    }
+
+
+    public class Columns{
+        public static final String BOOKED_TABLE = "bookedTable";
     }
 }

@@ -76,7 +76,8 @@ public class TablesViewModel implements ViewModel {
                     }
 
                     onDataReady(tableMap);
-                });
+
+                }, Throwable::printStackTrace);
     }
 
     private void getCachedTableMap() {
@@ -88,7 +89,7 @@ public class TablesViewModel implements ViewModel {
     }
 
     public void clearBookedTable() {
-        dataBaseManager.clearBookedTable(customerId);
+        dataBaseManager.clearBooking(customerId);
     }
 
     @Override

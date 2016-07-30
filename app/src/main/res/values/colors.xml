@@ -14,7 +14,7 @@
     <color name="transparent">#00000000</color>
 
     <color name="grey">#7e7e7e</color>
-    <color name="grey_transparent">#adbebebe</color>
+    <color name="grey_transparent">#afefefef</color>
     <color name="grey_light">#cfcfcf</color>
     <color name="grey_lighter">#efefef</color>
 </resources>

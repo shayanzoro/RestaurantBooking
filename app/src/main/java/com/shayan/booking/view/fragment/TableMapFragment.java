@@ -64,7 +64,8 @@ public class TableMapFragment extends BaseFragment implements TablesViewModel.Da
                         //the table is available
                         viewModel.bookTable(position);
                         tablesAdapter.bookTable(position);
-                    } else {
+
+                    } else if(tablesAdapter.isTableBookedByUser(position)){
                         viewModel.clearBookedTable();
                         tablesAdapter.clearBookTable();
                     }

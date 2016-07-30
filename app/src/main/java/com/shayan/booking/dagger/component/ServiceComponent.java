@@ -1,6 +1,7 @@
 package com.shayan.booking.dagger.component;
 
 import com.shayan.booking.dagger.module.ServiceModule;
+import com.shayan.booking.receiver.AlarmHandler;
 import com.shayan.booking.viewmodel.CustomerViewModel;
 import com.shayan.booking.viewmodel.TablesViewModel;
 
@@ -18,5 +19,7 @@ public interface ServiceComponent {
     void inject(CustomerViewModel customerViewModel);
 
     void inject(TablesViewModel tablesViewModel);
+
+    void inject(AlarmHandler alarmHandler);
 
 }
