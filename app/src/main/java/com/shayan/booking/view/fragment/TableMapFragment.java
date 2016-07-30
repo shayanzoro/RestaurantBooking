@@ -60,14 +60,14 @@ public class TableMapFragment extends BaseFragment implements TablesViewModel.Da
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), (view, position) -> {
 
-                    if (!tablesAdapter.isTableBookedByUser(position)) {
+                    if (tablesAdapter.isTableBookedByUser(position)) {
+                        viewModel.clearBookedTable();
+                        tablesAdapter.clearBookTable();
+
+                    } else if (tablesAdapter.isTableAvailable(position)) {
                         //the table is available
                         viewModel.bookTable(position);
                         tablesAdapter.bookTable(position);
-
-                    } else if(tablesAdapter.isTableBookedByUser(position)){
-                        viewModel.clearBookedTable();
-                        tablesAdapter.clearBookTable();
                     }
                 })
         );

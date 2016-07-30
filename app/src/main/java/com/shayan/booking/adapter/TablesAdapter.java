@@ -34,20 +34,17 @@ public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (isTableBookedByOther(position)) {
+        if (!isTableAvailable(position)) {
             holder.reservedText.setVisibility(View.VISIBLE);
             holder.yourTableText.setVisibility(View.INVISIBLE);
-            holder.root.setEnabled(false);
 
         } else if (isTableBookedByUser(position)) {
             holder.reservedText.setVisibility(View.INVISIBLE);
             holder.yourTableText.setVisibility(View.VISIBLE);
-            holder.root.setEnabled(true);
 
         } else {
             holder.reservedText.setVisibility(View.INVISIBLE);
             holder.yourTableText.setVisibility(View.INVISIBLE);
-            holder.root.setEnabled(true);
         }
     }
 
@@ -79,8 +76,8 @@ public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.ViewHolder
         return tableMap.getBookedTable() == position;
     }
 
-    public boolean isTableBookedByOther(int position) {
-        return !tableMap.getTableMap()[position];
+    public boolean isTableAvailable(int position) {
+        return tableMap.getTableMap()[position];
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
