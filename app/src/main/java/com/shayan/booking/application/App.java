@@ -8,6 +8,7 @@ import com.shayan.booking.R;
 import com.shayan.booking.dagger.component.DaggerServiceComponent;
 import com.shayan.booking.dagger.component.ServiceComponent;
 import com.shayan.booking.dagger.module.ServiceModule;
+import com.shayan.booking.receiver.AlarmHandler;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +28,7 @@ public class App extends MultiDexApplication {
         super.onCreate();
         initDagger();
         initCalligraphy();
+        AlarmHandler.init(this);
     }
 
     private void initDagger() {

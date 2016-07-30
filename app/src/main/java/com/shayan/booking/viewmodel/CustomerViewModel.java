@@ -82,7 +82,8 @@ public class CustomerViewModel implements ViewModel {
                 .subscribe(customers -> {
                     onDataReady(customers);
                     dataBaseManager.insertOrUpdateCustomers(customers);
-                });
+
+                }, Throwable::printStackTrace);
     }
 
     private void getCachedCustomers() {

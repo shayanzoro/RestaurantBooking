@@ -3,9 +3,9 @@ package com.shayan.booking.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.j256.ormlite.android.AndroidConnectionSource;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -54,27 +54,6 @@ public class DataBaseManager extends OrmLiteSqliteOpenHelper {
         super.close();
         customerDao = null;
         tableMapDao = null;
-    }
-
-    public void clearTable(Class dataClass) {
-        SQLiteDatabase db = getWritableDatabase();
-        this.connectionSource = new AndroidConnectionSource(db);
-        try {
-            TableUtils.clearTable(connectionSource, dataClass);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void clearTables(Class... dataClasses) {
-        SQLiteDatabase db = getWritableDatabase();
-        this.connectionSource = new AndroidConnectionSource(db);
-        try {
-            for (Class cls : dataClasses)
-                TableUtils.clearTable(connectionSource, cls);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     //    region Customer
@@ -153,10 +132,21 @@ public class DataBaseManager extends OrmLiteSqliteOpenHelper {
         getTableMapDao().update(tableMap);
     }
 
-    public void clearBookedTable(long customerId) {
+    public void clearBooking(long customerId) {
         TableMap tableMap = getTableMap(customerId);
         tableMap.clearBookedTable();
         getTableMapDao().update(tableMap);
+    }
+
+    public void clearAllBookings() {
+        try {
+            UpdateBuilder<TableMap, Long> updateBuilder = getTableMapDao().updateBuilder();
+            updateBuilder.updateColumnValue(TableMap.Columns.BOOKED_TABLE, TableMap.BOOKED_DEFAULT_POSITION);
+            updateBuilder.update();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void updateTableMap(long customerId, boolean[] tables) {
