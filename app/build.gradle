@@ -61,9 +61,6 @@ dependencies {
     //material library
     compile 'com.github.rey5137:material:1.2.1'
 
-    //animation library
-    compile 'com.github.florent37:viewanimator:1.0.4'
-
     //Dependency Injection
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.google.dagger:dagger:2.4'
