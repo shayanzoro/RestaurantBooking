@@ -34,7 +34,7 @@
                 android:layout_toLeftOf="@+id/btn_cancel_search"
                 android:background="@color/grey_light"
                 android:hint="@string/search_customer_name"
-                android:imeOptions="actionSearch"
+                android:imeOptions="actionDone"
                 android:inputType="text"/>
 
             <!--Search Button-->
