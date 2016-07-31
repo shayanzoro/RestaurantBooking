@@ -4,30 +4,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.TextView;
 
-import java.util.concurrent.TimeUnit;
-
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
 /**
  * Created by Shayan on 7/10/2016.
  */
 public class RxUtils {
-
-    public static void runDelayed(long milliseconds, Runnable runnable) {
-        runDelayedAsObservable(milliseconds).subscribe(integer -> {
-            runnable.run();
-        });
-    }
-
-    public static Observable<Integer> runDelayedAsObservable(long milliseconds) {
-        return Observable.just(1)
-                .delaySubscription(milliseconds, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io());
-    }
 
     /**
      * Creates a subject that emits text change events for the current TextView
