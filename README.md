@@ -1,1 +1,3 @@
-# RestaurantBooking
+# Restaurant Booking
+
+A complete app sample including RESTful services calling, easy DataBase accessing, Dependency Injection, lots of RxJava methods, MVVM design pattern and so on...
