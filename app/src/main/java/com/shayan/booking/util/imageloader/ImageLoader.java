@@ -24,7 +24,7 @@ public class ImageLoader {
 
     @Getter
     private static ImageLoader instance = new ImageLoader();
-    private ExecutorService downloadExecutor, taskExecutor;
+    private ExecutorService downloadExecutor;
     private MemoryCache memoryCache;
 
     private Map<ImageView, String> imageViews = Collections.synchronizedMap(new WeakHashMap<>());
@@ -34,30 +34,22 @@ public class ImageLoader {
 
     public ImageLoader() {
         downloadExecutor = Executors.newFixedThreadPool(5);
-        taskExecutor = Executors.newFixedThreadPool(10);
         memoryCache = new MemoryCache();
     }
 
     public void load(ImageView imageView, String url) {
-//        imageView.setImageBitmap(null);
-
-        taskExecutor.submit(() -> {
-
-            if (waitIfPaused()) return;
-
-            imageViews.put(imageView, url);
-            Log.d("load", "loadin");
-            Bitmap cachedBitmap = memoryCache.get(url);
+        imageViews.put(imageView, url);
+        Bitmap cachedBitmap = memoryCache.get(url);
             if (cachedBitmap != null)
                 displayBitmap(imageView, cachedBitmap, url);
             else
                 queuePhoto(imageView, url);
-        });
     }
 
     private void queuePhoto(ImageView imageView, String urlString) {
         downloadExecutor.submit(() -> {
             try {
+                if (waitIfPaused()) return;
                 if (isImageReused(imageView, urlString)) return;
 
                 URL url = new URL(urlString);
@@ -102,10 +94,16 @@ public class ImageLoader {
     }
 
     public void pause() {
+        if(paused.get()) return;
+
+        Log.d("pause", "paused");
         paused.set(true);
     }
 
     public void resume() {
+        if(!paused.get()) return;
+
+        Log.d("pause", "resumed");
         paused.set(false);
         synchronized (pauseLock) {
             pauseLock.notifyAll();

@@ -2,7 +2,6 @@ package com.shayan.booking.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,15 +36,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         Hotel item = items.get(position);
 
-        if (holder.imageView.getTag() == null) {
-            holder.imageView.setTag(position);
-        } else if (position != (int) holder.imageView.getTag()) {
-            Log.d("tag", "is NOT the same: " + holder.imageView.getTag() + " should be " + position);
-            holder.imageView.setImageBitmap(null);
-        } else {
-            Log.d("tag", "IS the same: " + holder.imageView.getTag() + " equals " + position);
-        }
-
+        holder.imageView.setImageBitmap(null);
         ImageLoader.getInstance().load(holder.imageView, item.getImageUrl());
     }
 
