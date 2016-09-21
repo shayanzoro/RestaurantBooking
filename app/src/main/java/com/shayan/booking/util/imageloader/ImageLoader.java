@@ -96,14 +96,12 @@ public class ImageLoader {
     public void pause() {
         if(paused.get()) return;
 
-        Log.d("pause", "paused");
         paused.set(true);
     }
 
     public void resume() {
         if(!paused.get()) return;
 
-        Log.d("pause", "resumed");
         paused.set(false);
         synchronized (pauseLock) {
             pauseLock.notifyAll();
@@ -112,9 +110,7 @@ public class ImageLoader {
 
     private boolean isImageReused(ImageView imageView, String url) {
         String tag = imageViews.get(imageView);
-        boolean isReused = tag == null || !tag.equals(url);
-        Log.d("reused", ""+isReused);
-        return isReused;
+        return tag == null || !tag.equals(url);
     }
 
     public void clear() {
