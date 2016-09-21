@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.shayan.booking.R;
 import com.shayan.booking.model.rest.Hotel;
 import com.shayan.booking.util.imageloader.ImageLoader;
+import com.shayan.booking.view.widget.HotelTitleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,8 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
         holder.imageView.setImageBitmap(null);
         ImageLoader.getInstance().load(holder.imageView, item.getImageUrl());
+
+        holder.titleView.setHotel(item);
     }
 
     @Override
@@ -52,10 +55,13 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
+        HotelTitleView titleView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.hotel_image);
+            titleView = (HotelTitleView) itemView.findViewById(R.id.hotel_title);
+
         }
     }
 }
