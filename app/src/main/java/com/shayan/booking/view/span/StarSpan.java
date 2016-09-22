@@ -3,7 +3,6 @@ package com.shayan.booking.view.span;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.text.style.TypefaceSpan;
@@ -59,9 +58,5 @@ public class StarSpan extends TypefaceSpan {
         paint.setTypeface(typeface);
         paint.setColor(color);
         paint.setTextSize(textSize);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            paint.setLetterSpacing(0.3f);
-        }
     }
 }
