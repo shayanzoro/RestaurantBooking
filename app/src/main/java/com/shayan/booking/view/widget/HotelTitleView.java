@@ -7,7 +7,8 @@ import android.widget.TextView;
 
 import com.shayan.booking.R;
 import com.shayan.booking.model.rest.Hotel;
-import com.shayan.booking.view.RateSpan;
+import com.shayan.booking.view.span.StarSpan;
+import com.shayan.booking.view.span.ThumbSpan;
 
 import lombok.Setter;
 
@@ -35,7 +36,8 @@ public class HotelTitleView extends TextView {
             String text = hotel.getTitle().concat(" ").concat(rateString);
 
             SpannableString span = new SpannableString(text);
-            span.setSpan(new RateSpan(getContext()), text.length() - rateString.length(), text.length(), 0);
+            span.setSpan(new StarSpan(getContext()), text.length() - rateString.length(), text.length() - 1, 0);
+            span.setSpan(new ThumbSpan(getContext()), text.length() - 1, text.length(), 0);
             setText(span);
         } else {
             setText(hotel.getTitle());

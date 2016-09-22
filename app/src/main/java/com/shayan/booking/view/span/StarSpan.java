@@ -1,8 +1,9 @@
-package com.shayan.booking.view;
+package com.shayan.booking.view.span;
 
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.text.style.TypefaceSpan;
@@ -12,13 +13,13 @@ import com.shayan.booking.R;
 /**
  * Created by Shayan on 9/21/2016.
  */
-public class RateSpan extends TypefaceSpan {
+public class StarSpan extends TypefaceSpan {
 
     private Typeface typeface;
     private int color;
     private int textSize;
 
-    public RateSpan(Context context) {
+    public StarSpan(Context context) {
         super("");
         typeface = Typeface.createFromAsset(context.getAssets(), context.getString(R.string.font_fontawesome));
         color = ContextCompat.getColor(context, R.color.gold);
@@ -58,5 +59,9 @@ public class RateSpan extends TypefaceSpan {
         paint.setTypeface(typeface);
         paint.setColor(color);
         paint.setTextSize(textSize);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            paint.setLetterSpacing(0.3f);
+        }
     }
 }
