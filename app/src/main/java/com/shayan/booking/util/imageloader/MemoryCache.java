@@ -1,10 +1,9 @@
 package com.shayan.booking.util.imageloader;
 
 import android.graphics.Bitmap;
-import android.util.Log;
+import android.support.v4.util.ArrayMap;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MemoryCache {
 
-    private Map<String, Bitmap> cache = Collections.synchronizedMap(new HashMap());
+    private Map<String, Bitmap> cache = Collections.synchronizedMap(new ArrayMap<>());
 
     public Bitmap get(String key) {
         if(!cache.containsKey(key))
@@ -26,7 +25,6 @@ public class MemoryCache {
 
     public void put(String key, Bitmap bitmap) {
         cache.put(key, bitmap);
-        Log.d("cache", "cached items: " + cache.size());
     }
 
     public void clear() {
