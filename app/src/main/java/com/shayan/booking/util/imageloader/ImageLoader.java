@@ -3,6 +3,7 @@ package com.shayan.booking.util.imageloader;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v4.util.LruCache;
 import android.support.v7.widget.TintContextWrapper;
 import android.util.Log;
 import android.widget.ImageView;
@@ -25,7 +26,7 @@ public class ImageLoader {
     @Getter
     private static ImageLoader instance = new ImageLoader();
     private ExecutorService downloadExecutor;
-    private MemoryCache memoryCache;
+    private LruCache<String, Bitmap> memoryCache;
 
     private Map<ImageView, String> imageViews = Collections.synchronizedMap(new WeakHashMap<>());
 
@@ -34,7 +35,7 @@ public class ImageLoader {
 
     public ImageLoader() {
         downloadExecutor = Executors.newFixedThreadPool(5);
-        memoryCache = new MemoryCache();
+        memoryCache = new LruCache<>(20);
     }
 
     public void load(ImageView imageView, String url) {
@@ -114,6 +115,6 @@ public class ImageLoader {
     }
 
     public void clear() {
-        memoryCache.clear();
+        memoryCache.evictAll();
     }
 }
