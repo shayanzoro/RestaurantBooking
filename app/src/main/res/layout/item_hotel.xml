@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <com.shayan.booking.view.widget.AsyncImageView
                 android:id="@+id/hotel_image"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_toRightOf="@+id/hotel_image"
+                android:layout_toEndOf="@+id/hotel_image"
                 android:padding="8dp">
 
                 <com.shayan.booking.view.widget.HotelTitleView
@@ -41,26 +42,26 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:textStyle="bold"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:textColor="#142354"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:gravity="center"
                     android:text="Other"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:gravity="center"
                     android:text="Property"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:gravity="center"
                     android:text="Parameters"/>
             </LinearLayout>

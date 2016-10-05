@@ -31,7 +31,7 @@ public class ImageLoader {
     private Map<ImageView, String> imageViews = Collections.synchronizedMap(new WeakHashMap<>());
 
     private AtomicBoolean paused = new AtomicBoolean(false);
-    private Object pauseLock = new Object();
+    private final Object pauseLock = new Object();
 
     public ImageLoader() {
         downloadExecutor = Executors.newFixedThreadPool(5);

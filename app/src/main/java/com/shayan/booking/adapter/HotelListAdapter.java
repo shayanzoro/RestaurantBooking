@@ -5,11 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.shayan.booking.R;
 import com.shayan.booking.model.rest.Hotel;
-import com.shayan.booking.util.imageloader.ImageLoader;
+import com.shayan.booking.view.widget.AsyncImageView;
 import com.shayan.booking.view.widget.HotelTitleView;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.row_hotel, parent, false);
+        View view = inflater.inflate(R.layout.item_hotel, parent, false);
         return new ViewHolder(view);
     }
 
@@ -37,9 +36,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         Hotel item = items.get(position);
 
-        holder.imageView.setImageBitmap(null);
-        ImageLoader.getInstance().load(holder.imageView, item.getImageUrl());
-
+        holder.imageView.loadImage(item.getImageUrl());
         holder.titleView.setHotel(item);
     }
 
@@ -54,12 +51,12 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        AsyncImageView imageView;
         HotelTitleView titleView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.hotel_image);
+            imageView = (AsyncImageView) itemView.findViewById(R.id.hotel_image);
             titleView = (HotelTitleView) itemView.findViewById(R.id.hotel_title);
 
         }
