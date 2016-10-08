@@ -65,7 +65,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.google.dagger:dagger:2.4'
     apt 'com.google.dagger:dagger-compiler:2.4'
-
+    provided 'com.google.guava:guava:19.0'
     //lombok
     provided 'org.projectlombok:lombok:1.12.6'
 
